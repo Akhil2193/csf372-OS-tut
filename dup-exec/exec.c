@@ -1,12 +1,15 @@
-#include <unistd.h>
 #include <stdio.h>
- 
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
 int main(int argc, char *argv[]) {
     // printf("%s\n", argv[0]);
 
     // takes path of executable binary file
     // any number of arguments can be passed, but the last one must be NULL
-    execl("/bin/ls", "/bin/ls", "-lh", "Users/ashmitkx/Documents/code/os/", NULL);
+    // put your own path here onwards
+    execl("/bin/ls", "/bin/ls", "-lh", "/Users/ashmitkx/Documents/code/os/", NULL);
 
     // however, the os already loads files under /bin/ into the PATH variable
     // so we can just use the name of the binary file
@@ -33,6 +36,7 @@ int main(int argc, char *argv[]) {
     // but what if I actually have some peice of code to run after exec?
     // if (!fork()) // child will execute and die
     //     execlp("ls", "ls", "-lh", "/Users/ashmitkx/Documents/code/os/", NULL);
+    // wait(NULL); // wait for child to die, else bad things happen
     // printf("More code ...\n"); // parent can continue execution
 
     /* 

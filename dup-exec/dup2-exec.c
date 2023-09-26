@@ -16,24 +16,26 @@ int main(void) {
     
     // ls writes to file descritor 1, and since 1 is now testFile.txt
     // ls will be written into testFile.txt
-    execlp("ls", "ls", "/Users/ashmitkx/Documents/code/os/", NULL);
+    if (!fork())
+        execlp("ls", "ls", ".", NULL);
     
     close(fd1);
     close(fd_file);
     
-    // // restore stdout
-    // dup2(std_out, 1);
+    // restore stdout
+    dup2(std_out, 1);
     
-    // fd_file = open("testFile.txt", O_RDONLY);
-    // printf("The file descriptor is: %d\n", fd_file);
+    fd_file = open("testFile.txt", O_RDONLY);
+    printf("The file descriptor is: %d\n", fd_file);
     
-    // // duplicating the file descriptor for to STDIN
-    // int fd0 = dup2(fd_file, 0);
+    // duplicating the file descriptor for to STDIN
+    int fd0 = dup2(fd_file, 0);
     
-    // // wc reads from file descritor 0, and since 0 is now testFile.txt
-    // // wc will read from testFile.txt
-    // execlp("wc", "wc", "-l", NULL);
+    // wc reads from file descritor 0, and since 0 is now testFile.txt
+    // wc will read from testFile.txt
+    if (!fork())
+        execlp("wc", "wc", "-l", NULL);
     
-    // close(fd0);
-    // close(fd_file);
+    close(fd0);
+    close(fd_file);
 }

@@ -23,21 +23,21 @@ int main(int argc, char* argv[]) {
     close(fd_file);
     close(fd1);
     
-    // // restore stdout
-    // dup2(std_out, 1);
+    // restore stdout
+    dup2(std_out, 1);
 
-    // fd_file = open("testFile.txt", O_RDONLY);
-    // printf("Second fopen file descriptor is: %d\n", fd_file);
+    fd_file = open("testFile.txt", O_RDONLY);
+    printf("Second fopen file descriptor is: %d\n", fd_file);
 
-    // // duplicating the file descriptor for to STDIN
-    // int fd0 = dup2(fd_file, 0);
-    // char str[100];
+    // duplicating the file descriptor for to STDIN
+    int fd0 = dup2(fd_file, 0);
+    char str[100];
     
-    // // scanf reads from file descritor 0, and since 0 is now testFile.txt
-    // // scanfs will read from testFile.txt
-    // scanf("%s", str);
-    // printf("The string is: %s\n", str);
+    // scanf reads from file descritor 0, and since 0 is now testFile.txt
+    // scanfs will read from testFile.txt
+    scanf("%s", str);
+    printf("The string is: %s\n", str);
     
-    // close(fd_file);
-    // close(fd0);
+    close(fd_file);
+    close(fd0);
 }
