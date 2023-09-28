@@ -15,6 +15,9 @@
 // synchronosly waiting for specific signals) are implemented in a new group of
 // system functions.
 
+//https://www.gnu.org/savannah-checkouts/gnu/libc/manual/html_node/Sigsuspend.html
+//Refer to this link if you need more clarity
+
 sigset_t set, old_set;
 int ret;
 
